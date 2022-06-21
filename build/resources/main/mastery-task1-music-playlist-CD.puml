@@ -1,0 +1,86 @@
+@startuml
+
+class AddSongToPlaylistActivity {
+    - log: Logger
+    - playlistDao: PlaylistDao
+    - albumTrackDao: AlbumTrackDao
+    + handleRequest(AddSongToPlaylistRequest, Context): AddSongToPlaylistResult
+}
+
+class CreatePlaylistActivity {
+    - log: Logger
+    - playlistDao: PlaylistDao
+    + handleRequest(CreatePlaylistRequest, Context) : CreatePlaylistResult
+}
+
+class GetPlaylistActivity {
+    - log: Logger
+    - playlistDao: PlaylistDao
+    + handleRequest(GetPlaylistRequest, Context): GetPlaylistResult
+}
+
+class GetPlaylistSongsActivity {
+    - log: Logger
+    - playlistDao: PlaylistDao
+    + handleRequest(GetPlaylistSongsRequest, Context): GetPlaylistSongsResult
+}
+
+class UpdatePlaylistActivity{
+    - log: Logger
+    - playlistDao: PlaylistDao
+    + handleRequest(UpdatePlaylistRequest, Context): UpdatePlaylistResult
+}
+
+class AlbumTrackDao {
+    - dynamoDbMapper: DynamoDBMapper
+}
+
+class PlaylistDao {
+    - dynamoDbMapper: DynamoDBMapper
+    + getPlaylist(String): Playlist
+}
+
+class AlbumTrackNotFoundException
+
+class InvalidAttributeValueException
+
+class PlaylistNotFoundException
+
+class AlbumTrack{
+
+    @DynamoDBHashKey asin: String
+    @DynamoDBRangeKey trackNumber: Integer
+    albumName: String
+    songTitle: String
+
+}
+
+class Playlist {
+    @DynamoDBHashKey id: String
+    songList: List<AlbumTrack>
+    name: String
+    customerId: String
+    songCount: Integer
+    tags: Set<String>
+
+    + getSongList() List<AlbumTrack>
+    + setSongList(List<AlbumTrack>)
+}
+
+class InvalidAttributeActivityException
+class InvalidAttributeChangeException
+class InvalidAttributeValueException
+
+
+AddSongToPlaylistActivity *-- PlaylistDao
+AddSongToPlaylistActivity *-- AlbumTrackDao
+CreatePlaylistActivity *-- PlaylistDao
+GetPlaylistActivity *-- PlaylistDao
+GetPlaylistSongsActivity *-- PlaylistDao
+UpdatePlaylistActivity *-- PlaylistDao
+Playlist *-- AlbumTrack
+
+InvalidAttributeValueException --|> InvalidAttributeActivityException
+InvalidAttributeChangeException --|> InvalidAttributeActivityException
+
+@enduml

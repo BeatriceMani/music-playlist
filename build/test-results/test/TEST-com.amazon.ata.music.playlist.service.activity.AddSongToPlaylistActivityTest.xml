@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivityTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-02-21T21:22:51" hostname="beatrices-mbp.lan" time="1.736">
+  <properties/>
+  <testcase name="handleRequest_noMatchingAlbumTrack_throwsAlbumTrackNotFoundException()" classname="com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivityTest" time="1.661"/>
+  <testcase name="handleRequest_validRequest_addsSongToEndOfPlaylist()" classname="com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivityTest" time="0.051"/>
+  <testcase name="handleRequest_noMatchingPlaylistId_throwsPlaylistNotFoundException()" classname="com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivityTest" time="0.004"/>
+  <testcase name="handleRequest_validRequestWithQueueNextFalse_addsSongToEndOfPlaylist()" classname="com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivityTest" time="0.005"/>
+  <testcase name="handleRequest_validRequestWithQueueNextTrue_addsSongToBeginningOfPlaylist()" classname="com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivityTest" time="0.007"/>
+  <system-out><![CDATA[16:22:52.812 [Test worker] ERROR com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivity - Album Track does not exist
+16:22:52.896 [Test worker] ERROR com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivity - Unable to retrieve playlist
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
